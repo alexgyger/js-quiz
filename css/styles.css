@@ -85,10 +85,15 @@ button:hover {
   background: #50E3C2;
 }
 
-button:active {
+button:focus {
   background: grey;
   /*color: red;*/
 }
+
+/*button:active {
+  background: grey;
+  /*color: red;*/
+}*/
 
 #btn-start-quiz,
 button:nth-of-type(2) {

@@ -83,17 +83,17 @@ function buildUpHTML() {
 }
 
 // Running the quiz, saves answers (true/false) to the "quizList"-array
-$("#btn-start-quiz").click(() => {
+$("#btn-start-quiz").click(function(){
 	$(this).hide();
 	$("#btn-show-results").show();
-	setTimeout(() => {
+	setTimeout(function(){
 		runQuiz(quizList);
 	}, 0);
 	$("#btn-show-results").focus();
 });
 
 // Create and show results in #output div
-$("#btn-show-results").click(() => {
+$("#btn-show-results").click(function(){
 	$(this).hide();
 	$("#btn-retry-quiz").show();
 	
@@ -119,7 +119,7 @@ $("#btn-show-results").click(() => {
 });
 
 // Retry quiz - clear output and run quiz again
-$("#btn-retry-quiz").click(() => {
+$("#btn-retry-quiz").click(function(){
 	$(this).hide();
 	$(".hidden-hints").hide();
 
@@ -134,7 +134,7 @@ $("#btn-retry-quiz").click(() => {
 	$("#btn-show-hints").hide()
 
 	// Run Quiz again
-	setTimeout(() => {
+	setTimeout(function(){
 		runQuiz(quizList);
 	}, 0);
 
@@ -142,7 +142,7 @@ $("#btn-retry-quiz").click(() => {
 });
 
 // Toggle hints
-$("#btn-show-hints").click(() => {
+$("#btn-show-hints").click(function(){
 	$(".hidden-hints").toggle();
 
 	$("html, body").animate({ 
@@ -150,6 +150,6 @@ $("#btn-show-hints").click(() => {
 	}, "slow");
 });
 
-$(".mycover").hover(() => {
+$(".mycover").hover(function(){
 	$(".infobox").hide();
 });
