@@ -1,8 +1,6 @@
-// Quiz-App by Alexander Gyger, build 1.3 - Aug 2017
-
-var corrAnsw = 0;
-var answSkipped = 0;
-var htmlOutput = '';
+let corrAnsw = 0;
+let answSkipped = 0;
+let htmlOutput = '';
 let quizList = [
   ['Are Java and JavaScript the same?', 'no']
   ,
@@ -12,7 +10,7 @@ let quizList = [
   ['Which is the highest mountain in Switzerland?', 'dufourspitze']
  ];
 
-function print(message) {
+function renderUI(message) {
   // DOM-Object
   let outputDiv = document.getElementById('output');
   outputDiv.innerHTML = message;
@@ -20,7 +18,7 @@ function print(message) {
 
 function runQuiz(passArray) {
 	for( i = 0; i < passArray.length; i += 1) {
-		var currentQuestion = '';
+		let currentQuestion = '';
 		while (currentQuestion === ''){
 			currentQuestion = prompt('Question ' + (i+1) + ': ' + passArray[i][0]);
 		}
@@ -85,17 +83,17 @@ function buildUpHTML() {
 }
 
 // Running the quiz, saves answers (true/false) to the "quizList"-array
-$("#btn-start-quiz").click(function(){
+$("#btn-start-quiz").click(() => {
 	$(this).hide();
 	$("#btn-show-results").show();
-	setTimeout(function(){
+	setTimeout(() => {
 		runQuiz(quizList);
 	}, 0);
 	$("#btn-show-results").focus();
 });
 
 // Create and show results in #output div
-$("#btn-show-results").click(function(){
+$("#btn-show-results").click(() => {
 	$(this).hide();
 	$("#btn-retry-quiz").show();
 	
@@ -106,7 +104,7 @@ $("#btn-show-results").click(function(){
 	}
 
 	buildUpHTML();
-	print(htmlOutput);
+	renderUI(htmlOutput);
 	
 	// $('html, body').animate({
 	// 	scrollTop: $(".middle").offset().top
@@ -121,7 +119,7 @@ $("#btn-show-results").click(function(){
 });
 
 // Retry quiz - clear output and run quiz again
-$("#btn-retry-quiz").click(function(){
+$("#btn-retry-quiz").click(() => {
 	$(this).hide();
 	$(".hidden-hints").hide();
 
@@ -129,14 +127,14 @@ $("#btn-retry-quiz").click(function(){
 	corrAnsw = 0;
 	answSkipped = 0;
 	htmlOutput = '';
-	print(htmlOutput);
+	renderUI(htmlOutput);
 
 	$("#btn-show-results").show();
 	$("#result-congrats").hide();
 	$("#btn-show-hints").hide()
 
 	// Run Quiz again
-	setTimeout(function(){
+	setTimeout(() => {
 		runQuiz(quizList);
 	}, 0);
 
@@ -144,7 +142,7 @@ $("#btn-retry-quiz").click(function(){
 });
 
 // Toggle hints
-$("#btn-show-hints").click(function(){
+$("#btn-show-hints").click(() => {
 	$(".hidden-hints").toggle();
 
 	$("html, body").animate({ 
@@ -152,6 +150,6 @@ $("#btn-show-hints").click(function(){
 	}, "slow");
 });
 
-$(".mycover").hover(function(){
+$(".mycover").hover(() => {
 	$(".infobox").hide();
 });
