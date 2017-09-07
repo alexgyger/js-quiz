@@ -36,7 +36,7 @@ body {
   background-position: 50% 30%;
   padding: 1.4rem;
   min-height: 14rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   transition: background-color 3s ease-out, min-height 1.5s;
 }
 
