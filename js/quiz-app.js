@@ -1,6 +1,9 @@
 let corrAnsw = 0;
 let answSkipped = 0;
 let htmlOutput = '';
+let runningQuiz = false;
+let showingResults = false;
+let finishQuiz = false;
 let quizList = [
   ['Are Java and JavaScript the same?', 'no']
   ,
@@ -16,27 +19,89 @@ function renderUI(message) {
   outputDiv.innerHTML = message;
 }
 
-function runQuiz(passArray) {
-	for( i = 0; i < passArray.length; i += 1) {
-		let currentQuestion = '';
-		while (currentQuestion === ''){
-			currentQuestion = prompt('Question ' + (i+1) + ': ' + passArray[i][0]);
-		}
-		// 4 input states: empty, cancelled(skipped), wrong, correct
-		if (currentQuestion != null) {
-			if (currentQuestion.toLowerCase() === passArray[i][1]){
-				corrAnsw += 1;
-				// console.log('corrAnsw: ' + corrAnsw);
+// function runQuiz(passArray) {
+// 	for( i = 0; i < passArray.length; i += 1) {
+// 		let currentQuestion = '';
+// 		while (currentQuestion === ''){
+// 			currentQuestion = prompt('Question ' + (i+1) + ': ' + passArray[i][0]);
+// 		}
+// 		// 4 input states: empty, cancelled(skipped), wrong, correct
+// 		if (currentQuestion != null) {
+// 			if (currentQuestion.toLowerCase() === passArray[i][1]){
+// 				corrAnsw += 1;
+// 				// console.log('corrAnsw: ' + corrAnsw);
+// 				passArray[i][2] = true;
+// 			} else {
+// 				passArray[i][2] = false;
+// 			}
+// 		} else {
+// 			passArray[i][2] = false;
+// 			answSkipped += 1;
+// 		};
+// 		// console.log('passArray[i][2]: ' + passArray[i][2]);
+// 	}
+// }
+
+function printNewQuestion(passArray, i){
+	$("#questionPhrase").html('Question ' + (i+1) + ': ' + passArray[i][0]);
+	$("#inputField").val("");
+}
+
+function runQuizViaInput(passArray) {
+	let i = 0;
+	console.log('Quiz started');
+	printNewQuestion(passArray, i);
+	$("#inputField").focus();
+
+	$("#btn-enter").click(function(){
+		if (i <= passArray.length){
+			if ($("#inputField").val().toLowerCase() === passArray[i][1]){
+				corrAnsw++;
 				passArray[i][2] = true;
-			} else {
-				passArray[i][2] = false;
 			}
-		} else {
-			passArray[i][2] = false;
-			answSkipped += 1;
+			i++;
+			printNewQuestion(passArray, i);
+			$("#inputField").focus();
 		}
+	})
+
+	$("#btn-skip").click(function(){
+		if (i <= passArray.length){
+			passArray[i][2] = false;
+			i++;
+			printNewQuestion(passArray, i);
+			$("#inputField").focus();
+		};
+	})
+
+	// if (i > passArray.length){
+	// 	runningQuiz = false;
+	// 	showingResults = true;
+	// }
+	
+	
+	// for( i = 0; i < passArray.length; i += 1) {
+	// 	let currentQuestion = '';
+		// while (currentQuestion === ''){
+		// 	currentQuestion = prompt('Question ' + (i+1) + ': ' + passArray[i][0]);
+		// }
+
+		// 4 input states: empty, cancelled(skipped), wrong, correct
+		
+		// if (currentQuestion != null) {
+		// 	if (currentQuestion.toLowerCase() === passArray[i][1]){
+		// 		corrAnsw += 1;
+		// 		// console.log('corrAnsw: ' + corrAnsw);
+		// 		passArray[i][2] = true;
+		// 	} else {
+		// 		passArray[i][2] = false;
+		// 	}
+		// } else {
+		// 	passArray[i][2] = false;
+		// 	answSkipped += 1;
+		// }
 		// console.log('passArray[i][2]: ' + passArray[i][2]);
-	}
+	// }
 }
 
 function createList(passPhrase) {
@@ -85,11 +150,14 @@ function buildUpHTML() {
 // Running the quiz, saves answers (true/false) to the "quizList"-array
 $("#btn-start-quiz").click(function(){
 	$(this).hide();
-	$("#btn-show-results").show();
+	$("#intro").hide();
+	// $("#btn-show-results").show();
 	setTimeout(function(){
-		runQuiz(quizList);
-	}, 0);
-	$("#btn-show-results").focus();
+		runningQuiz = true;
+		// runQuiz(quizList);
+		runQuizViaInput(quizList);
+		}, 0);
+	// $("#btn-show-results").focus();
 });
 
 // Create and show results in #output div
@@ -150,6 +218,6 @@ $("#btn-show-hints").click(function(){
 	}, "slow");
 });
 
-$(".mycover").hover(function(){
+$(".coverWide").hover(function(){
 	$(".infobox").hide();
 });

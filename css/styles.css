@@ -8,7 +8,7 @@
 }
 
 body {
-  background: #fff;
+  background: #50E3C2;
   margin: 0 auto;
   font: Helvetica Neue, Helvectica, Arial, serif;
   font-weight: 300;
@@ -22,7 +22,7 @@ body {
   padding: 0 1.4rem;
 }
 
-.mycover {
+.coverWide {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +40,7 @@ body {
   transition: background-color 3s ease-out, min-height 1.5s;
 }
 
-.mycover:hover {
+.coverWide:hover {
   background-color: #005E76;
 }
 
@@ -63,6 +63,14 @@ body {
   font-weight: bold;
 }
 
+/* quizarea */
+#quizarea {
+  width: 100%;
+  min-height: 5em;
+  padding: 1em;
+  background-color: #FFF8EB;
+}
+
 /* Button Styles */
 button {
   background: #005E76; /*#50E3C2; */
@@ -81,8 +89,21 @@ button {
   transition: background 0.5s;
 }
 
+/*button+button {
+  margin-left: 1em;
+}*/
+
 button:hover {
   background: #50E3C2;
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  width: 100%;
+  text-align: center; 
+  /*border-radius: 0.2rem;*/
+  border: none;
 }
 
 button:focus {
@@ -112,6 +133,10 @@ button:nth-of-type(2) {
 
 #result-congrats {
   background: #0f4e7a;
+}
+
+h1, h2, h3, p {
+  text-align: center;
 }
 
 /* Font styles */
@@ -259,7 +284,7 @@ svg {
   .container {
     max-width: 45rem;    
   }
-  .mycover {
+  .coverWide {
     min-height: 30em;
   }
 }
