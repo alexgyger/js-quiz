@@ -43,65 +43,68 @@ function renderUI(message) {
 // }
 
 function printNewQuestion(passArray, i){
-	$("#questionPhrase").html('Question ' + (i+1) + ': ' + passArray[i][0]);
-	$("#inputField").val("");
+	if (i < passArray.length){
+		$("#questionPhrase").html('Question ' + (i+1) + ': ' + passArray[i][0]);
+		$("#inputField").val("");
+		$("#inputField").focus();
+		console.log('printNewQuestion – i: ' + i);
+	} else {
+		console.log('printNewQuestion – else');
+		$("#inputField").hide()
+		$("#btn-enter").hide()
+		$("#btn-skip").hide()
+
+		$("#questionPhrase").html("The quiz is over, click below to see your results.")
+		$("#btn-show-results").show();
+		$("#btn-show-results").focus();
+	}
 }
 
 function runQuizViaInput(passArray) {
 	let i = 0;
 	console.log('Quiz started');
 	printNewQuestion(passArray, i);
+
+	$("#inputField").show()
+	$("#btn-enter").show()
+	$("#btn-skip").show()
 	$("#inputField").focus();
 
 	$("#btn-enter").click(function(){
-		if (i <= passArray.length){
+		if (i < passArray.length){
 			if ($("#inputField").val().toLowerCase() === passArray[i][1]){
 				corrAnsw++;
 				passArray[i][2] = true;
 			}
 			i++;
+			console.log('i: ' + i);
 			printNewQuestion(passArray, i);
-			$("#inputField").focus();
 		}
 	})
+  
+  $("#inputField").keyup(function(event) {
+		event.preventDefault();
+	  if (event.keyCode == 13) {
+	    if (i < passArray.length){
+				if ($("#inputField").val().toLowerCase() === passArray[i][1]){
+					corrAnsw++;
+					passArray[i][2] = true;
+				}
+				i++;
+				console.log('i: ' + i);
+				printNewQuestion(passArray, i);
+			}
+	  }
+  })
 
 	$("#btn-skip").click(function(){
-		if (i <= passArray.length){
+		if (i < passArray.length){
 			passArray[i][2] = false;
 			i++;
+			console.log('i: ' + i);
 			printNewQuestion(passArray, i);
-			$("#inputField").focus();
 		};
 	})
-
-	// if (i > passArray.length){
-	// 	runningQuiz = false;
-	// 	showingResults = true;
-	// }
-	
-	
-	// for( i = 0; i < passArray.length; i += 1) {
-	// 	let currentQuestion = '';
-		// while (currentQuestion === ''){
-		// 	currentQuestion = prompt('Question ' + (i+1) + ': ' + passArray[i][0]);
-		// }
-
-		// 4 input states: empty, cancelled(skipped), wrong, correct
-		
-		// if (currentQuestion != null) {
-		// 	if (currentQuestion.toLowerCase() === passArray[i][1]){
-		// 		corrAnsw += 1;
-		// 		// console.log('corrAnsw: ' + corrAnsw);
-		// 		passArray[i][2] = true;
-		// 	} else {
-		// 		passArray[i][2] = false;
-		// 	}
-		// } else {
-		// 	passArray[i][2] = false;
-		// 	answSkipped += 1;
-		// }
-		// console.log('passArray[i][2]: ' + passArray[i][2]);
-	// }
 }
 
 function createList(passPhrase) {
@@ -150,7 +153,7 @@ function buildUpHTML() {
 // Running the quiz, saves answers (true/false) to the "quizList"-array
 $("#btn-start-quiz").click(function(){
 	$(this).hide();
-	$("#intro").hide();
+	// $("#intro").hide();
 	// $("#btn-show-results").show();
 	setTimeout(function(){
 		runningQuiz = true;
@@ -190,6 +193,7 @@ $("#btn-show-results").click(function(){
 $("#btn-retry-quiz").click(function(){
 	$(this).hide();
 	$(".hidden-hints").hide();
+	$("#btn-show-results").hide();
 
 	// Reset output variables
 	corrAnsw = 0;
@@ -197,16 +201,15 @@ $("#btn-retry-quiz").click(function(){
 	htmlOutput = '';
 	renderUI(htmlOutput);
 
-	$("#btn-show-results").show();
 	$("#result-congrats").hide();
 	$("#btn-show-hints").hide()
 
 	// Run Quiz again
 	setTimeout(function(){
-		runQuiz(quizList);
-	}, 0);
+		runQuizViaInput(quizList);
+	}, 250);
 
-	$("#btn-show-results").focus();
+	// $("#btn-show-results").focus();
 });
 
 // Toggle hints

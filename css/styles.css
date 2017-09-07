@@ -67,7 +67,7 @@ body {
 #quizarea {
   width: 100%;
   min-height: 5em;
-  padding: 1em;
+  padding: 1.5em;
   background-color: #FFF8EB;
 }
 
@@ -135,7 +135,7 @@ button:nth-of-type(2) {
   background: #0f4e7a;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, ul, li {
   text-align: center;
 }
 
@@ -189,6 +189,12 @@ li {
   margin: 0;
   counter-increment: step-counter;
   line-height: 1.5rem;
+}
+
+
+/* Footer */
+footer {
+  margin-top: 5em;
 }
 
 /* Animation Base */
