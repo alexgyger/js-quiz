@@ -1,0 +1,80 @@
+// main container
+
+.app {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: $white;
+  background-image: url('../img/img-cover-transp.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+
+}
+
+/* Custom elements */
+.container {
+  margin: 0;
+  width: 100%;
+  padding: 0 1.4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /*flex-grow: 1;*/
+
+}
+
+/* --------------------------
+  Media queries
+ Extra small <576px  
+ Small ≥576px  
+ Medium ≥768px 
+ Large ≥992px
+ Extra large ≥1200px
+--------------------------- */
+
+.coverWide:hover {
+  background-color: #005E76;
+
+  @media screen and #{$brk-tiny} {
+    min-height: 30rem;
+  }
+}
+
+/* infobox */
+.infobox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  padding: 0.9rem .8rem .8rem .8rem;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #005E76;
+  border-radius: 2rem;
+  background: transparent;
+
+  font-size: 0.8rem;
+  color: #005E76;
+  font-weight: bold;
+}
+
+/* Functional parts */
+.hidden-hints {
+  color: red;
+  display: none;
+}
+
+.hidden-onload {
+  display: none;
+}
+
+#result-congrats {
+  background: #0f4e7a;
+}
+
