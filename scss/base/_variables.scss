@@ -1,0 +1,47 @@
+// Descriptive color variables
+
+$white          : #fff;
+$black          : #000;
+$grey           : grey;	
+/*#878787*/
+$green					: #50E3C2;
+$darkblue				: #005E76;
+$cream					: #FFF8EB;
+
+// Functional color variables
+
+$color-prim         : $darkblue;
+$color-sec          : $green;
+
+$color-text-light   : $white;
+$color-text-base    : $black;
+$color-text-dark    : $darkblue;
+
+/*$color-border-light : lighten($grey, 35%);
+$color-border-dark  : $blue*/
+
+/*$color-link-default : $yellow-orange;
+$color-link-visited : $regent-st-blue;*/
+
+$color-shadow       : rgba($black,.8);
+$color-body         : $green;
+
+// Font stacks
+
+$stack-sans-serif : Helvetica, Arial, sans-serif;
+$stack-helvetica  : 'Helvetica Neue', $stack-sans-serif;
+/*$stack-abolition  : 'Abolition Regular', $stack-sans-serif;*/
+
+// Border radius
+
+$br: 0.2rem;
+
+// Asset paths
+
+$path-img  : '../img';
+
+// Media query breakpoints
+
+$brk-tiny : '(min-width: 576px)';
+/*$brk-narrow : '(max-width: 768px)';
+$brk-wide   : '(max-width: 1024px)';*/

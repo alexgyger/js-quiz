@@ -1,0 +1,48 @@
+/* Button Styles */
+button {
+  @include text(1.2rem, 1.2, 500, $color-text-light);
+  @extend %centered;
+  background: $color-prim; /*#50E3C2; */
+  margin: 0.5rem 0;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0.8rem;
+  text-decoration: none;
+  border-radius: $br;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  transition: background 0.5s;
+}
+
+/*button+button {
+  margin-left: 1em;
+}*/
+
+button:hover {
+  background: $color-sec;
+}
+
+input {
+  @extend %centered;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  width: 100%;
+  /*border-radius: 0.2rem;*/
+  border: none;
+}
+
+button:focus {
+  background: $grey;
+  /*color: red;*/
+}
+
+/*button:active {
+  background: grey;
+  color: red;
+}*/
+
+/*#btn-start-quiz,
+button:nth-of-type(2) {
+    margin-bottom: 2.5rem;
+}*/
