@@ -1,9 +1,22 @@
-.tips {
-  @extend %columns;
-  float: left;
+/* quizarea */
+
+#quizarea {
+	margin: 0 auto;
 }
 
-.resorts {
+.column {
+  width: 100%;
+  min-height: 5em;
+  padding: 1.5em;
+  background-color: #FFF8EB;
+
+  margin-bottom: 3rem;
+  @media screen and #{$brk-tiny} {
+    width: 46%;    
+  }
+}
+
+/*.resorts {
   @extend %columns;
   float: right;
-}
+}*/

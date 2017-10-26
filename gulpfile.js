@@ -25,13 +25,13 @@ const gulp = require('gulp'),
 //         .pipe(gulp.dest('js'))
 // });
 
-// gulp.task("compileSass", function() {
-// 	gulp.src('scss/application.scss')
-// 	.pipe(maps.init())
-// 	.pipe(sass())
-// 	.pipe(maps.write('./'))
-// 	.pipe(gulp.dest('css'));
-// })
+gulp.task("compileSass", function() {
+	gulp.src('scss/application.scss')
+	.pipe(maps.init())
+	.pipe(sass())
+	.pipe(maps.write('./'))
+	.pipe(gulp.dest('css'));
+})
 
 
 // gulp.task("default", ["hello"], function() {

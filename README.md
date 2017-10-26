@@ -1,4 +1,4 @@
 # js-quiz
-Quiz-App by Alexander Gyger, build 1.5 - Sept 2017
-
-09052017 - Ported to git.
+Code for my Quiz-App. 
+Started - Sept, 2017
+by Alexander Gyger

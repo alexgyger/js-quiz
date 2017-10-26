@@ -1,32 +1,80 @@
-.primary-content {
-  @extend %content;
-  @extend %centered;
-  @extend %t-border;
-	padding-top: 25px;
-  padding-bottom: 95px;
-}
+// main container
 
-.secondary-content {
-  @extend %content;
-  @extend %t-border;
-  @extend %clearfix;
-  padding-top: 80px;
-	padding-bottom: 70px;
-  border-bottom: 2px solid $color-border-light;
-}
+.app {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-.wildlife {
-  color: $color-text-light;
-  text-align: left;
-  padding: 18% 24%;
-  border-top: 10px solid $color-border-dark;
-  margin: 105px 0 60px;
-  background: $color-sec url('#{$path-img}/bear.jpg') no-repeat center;
+  background-color: $white;
+  background-image: url('../img/img-cover-transp.png');
+  background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: inset 0 0 50px 10px $color-shadow;
-  border-radius: $br;
-  @media #{$brk-wide} {
-    padding: 10% 12%;
-    margin: 50px 0 20px;
+  background-position: 50% 50%;
+
+}
+
+/* Custom elements */
+.container {
+  margin: 0;
+  width: 100%;
+  padding: 0 1.4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /*flex-grow: 1;*/
+
+}
+
+/* --------------------------
+  Media queries
+ Extra small <576px  
+ Small ≥576px  
+ Medium ≥768px 
+ Large ≥992px
+ Extra large ≥1200px
+--------------------------- */
+
+.coverWide:hover {
+  background-color: #005E76;
+
+  @media screen and #{$brk-tiny} {
+    min-height: 30rem;
   }
 }
+
+/* infobox */
+.infobox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  padding: 0.9rem .8rem .8rem .8rem;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #005E76;
+  border-radius: 2rem;
+  background: transparent;
+
+  font-size: 0.8rem;
+  color: #005E76;
+  font-weight: bold;
+}
+
+/* Functional parts */
+.hidden-hints {
+  color: red;
+  display: none;
+}
+
+.hidden-onload {
+  display: none;
+}
+
+#result-congrats {
+  background: #0f4e7a;
+}
+

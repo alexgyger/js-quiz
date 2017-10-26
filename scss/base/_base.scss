@@ -447,6 +447,8 @@ template {
   display: none;
 }
 
+/* =================================== END NORMALIZE ======================================= */
+
 
 
 /* Base Styles -------------------- */
@@ -456,24 +458,37 @@ template {
 }
 
 body {
-  @include text(1em, 1.5, $color: $color-text-base);
+  @include text(1.2rem, 1.5, 300, $color: $color-text-base);
   margin: 0;
   font-family: $stack-helvetica;
+  background: $color-sec;
+  /*margin: 0 auto;*/
 }
 
-h1,
-h2 {
-  font-family: $stack-abolition;
+h1, h2, h3, p, ul, li {
+  @extend %centered;
+}
+
+h1 {
+  @include text(2rem, 1.6, 500);
+  margin: 0;
+  padding-top: 2rem;
 }
 
 h2 {
-  @include text(3.3125em, 1.1, normal);
-  margin: 0 0 .5em;
+  @include text(1.5rem, 1.5, 800);
+  margin: 0;
+  padding: 1rem 0;
 }
 
 h3 {
-  @include text(1.25em, 1.2, $color: $color-text-dark);
-  margin-bottom: 1.7em;
+  @include text(.9rem, 1.2, 300);
+  margin-bottom: 1.7rem;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
 img {
@@ -484,16 +499,22 @@ img {
 
 ul,
 ol {
-  margin: 30px 0;
+  margin: 0 0 1.4rem 2rem;
+  padding: 0;
 }
 
 li {
-  margin-bottom: 10px;
+  padding: 8px 0;
+  display: list-item;
+  width: 100%;
+  margin: 0;
+  counter-increment: step-counter;
+  line-height: 1.5rem;
 }
 
 /* Pseudo-classes ------------------ */
 
-a {
+/*a {
   &:link {
     color: $color-link-default;
     text-decoration: none;
@@ -504,4 +525,4 @@ a {
   &:hover {
     color: rgba($color-link-default, .5);
   }
-}
+}*/

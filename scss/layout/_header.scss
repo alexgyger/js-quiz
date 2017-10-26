@@ -1,13 +1,19 @@
-.main-header {
-  @extend %centered;
-  padding-top: 170px;
-  height: 850px;
-  background: linear-gradient($color-prim, transparent 90%),
-              linear-gradient(0deg, $color-body, transparent),
-              $color-prim url('#{$path-img}/mountains.jpg') no-repeat center;
+/* Header */ 
+
+.coverWide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background-color: #50E3C2;
+  background-image: url('../img/img-cover-transp.png');
+  background-repeat: no-repeat;
   background-size: cover;
-  @media #{$brk-narrow} {
-    max-height: 380px;
-    padding: 50px 25px 0;
-  }
+  background-position: 50% 30%;
+  padding: 1.4rem;
+  min-height: 14rem;
+  margin-bottom: 2rem;
+  transition: background-color 3s ease-out, min-height 1.5s;
 }
