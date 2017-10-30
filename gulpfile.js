@@ -42,12 +42,13 @@ gulp.task("compileSass", function() {
 	.pipe(gulp.dest('css'));
 })
 
-gulp.task('watchSass', function() {
-  gulp.watch('scss/**/*.scss', ['compileSass']);
+gulp.task('watchFiles', function() {
+    gulp.watch('scss/**/*.scss', ['compileSass']);
+    gulp.watch('js/quiz-app.js', ['concatScripts']);
 })
 
 gulp.task('clean', function() {
-  del(['dist', 'css/application.css*', 'js/app*.js*']);
+    del(['dist', 'css/application.css*', 'js/app*.js*']);
 })
 
 gulp.task("build", [ "minifyScripts", "compileSass"], function() {
@@ -56,10 +57,11 @@ gulp.task("build", [ "minifyScripts", "compileSass"], function() {
                     .pipe(gulp.dest('dist'));
 });
 
-gulp.task("default", ["clean"], function() {
-  gulp.start("build");
-});
+gulp.task('serve', ['watchFiles']);
 
+gulp.task("default", ["clean"], function() {
+    gulp.start("build");
+});
 // gulp default task: possible solution in Gulp 4 with gulp.series() – (Gulp 4 not out yet: working with local version 3.9.1)
 // Source API: https://github.com/gulpjs/gulp/blob/4.0/docs/API.md#gulpseriestasks
 // gulp.task("default", gulp.series('clean', 'build'));
