@@ -37,7 +37,7 @@
  Extra large ≥1200px
 --------------------------- */
 
-.coverWide:hover {
+header:hover {
   background-color: #005E76;
 
   @media screen and #{$brk-tiny} {

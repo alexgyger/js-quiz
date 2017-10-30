@@ -5,8 +5,6 @@ $color-border-dark  : $blue*/
 /*$color-link-default : $yellow-orange;
 $color-link-visited : $regent-st-blue;*/
 /*$stack-abolition  : 'Abolition Regular', $stack-sans-serif;*/
-/*$brk-narrow : '(max-width: 768px)';
-$brk-wide   : '(max-width: 1024px)';*/
 /* Normalize.css. */
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -470,7 +468,7 @@ li {
   }
 }*/
 /* Header */
-.coverWide {
+header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -489,8 +487,14 @@ li {
 
 /* Footer */
 footer {
-  /*margin-top: 5em;*/
+  margin-top: 2rem;
   padding: 0 5rem; }
+
+footer > p {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 300;
+  color: #000; }
 
 .app {
   margin: 0;
@@ -523,10 +527,10 @@ footer {
  Large ≥992px
  Extra large ≥1200px
 --------------------------- */
-.coverWide:hover {
+header:hover {
   background-color: #005E76; }
   @media screen and (min-width: 576px) {
-    .coverWide:hover {
+    header:hover {
       min-height: 30rem; } }
 
 /* infobox */
@@ -565,10 +569,13 @@ footer {
   min-height: 5em;
   padding: 1.5em;
   background-color: #FFF8EB;
-  margin-bottom: 3rem; }
-  @media screen and (min-width: 576px) {
+  margin-bottom: 3rem;
+  /*  @media screen and (min-width: 1024px) {
+    width: 46%;    
+  }*/ }
+  @media screen and (min-width: 768px) {
     .column {
-      width: 46%; } }
+      width: 65%; } }
 
 /*.resorts {
   @extend %columns;

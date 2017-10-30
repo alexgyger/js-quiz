@@ -1,5 +1,9 @@
 /* Footer */
 footer {
-  /*margin-top: 5em;*/
+ 	margin-top: 2rem;
   padding: 0 5rem;
+}
+
+footer > p {
+	@include text(1.2rem, 1.2, 300, $color: $color-text-base);
 }

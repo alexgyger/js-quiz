@@ -221,6 +221,6 @@ $("#btn-show-hints").click(function(){
 	}, "slow");
 });
 
-$(".coverWide").hover(function(){
+$("header").hover(function(){
 	$(".infobox").hide();
 });

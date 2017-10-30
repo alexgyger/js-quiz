@@ -11,9 +11,13 @@
   background-color: #FFF8EB;
 
   margin-bottom: 3rem;
-  @media screen and #{$brk-tiny} {
-    width: 46%;    
+  @media screen and #{$brk-narrow} {
+    width: 65%;    
   }
+
+/*  @media screen and #{$brk-wide} {
+    width: 46%;    
+  }*/
 }
 
 /*.resorts {

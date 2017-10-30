@@ -43,5 +43,5 @@ $path-img  : '../img';
 // Media query breakpoints
 
 $brk-tiny : '(min-width: 576px)';
-/*$brk-narrow : '(max-width: 768px)';
-$brk-wide   : '(max-width: 1024px)';*/
+$brk-narrow : '(min-width: 768px)';
+$brk-wide   : '(min-width: 1024px)';
