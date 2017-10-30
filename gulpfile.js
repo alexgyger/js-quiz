@@ -1,13 +1,14 @@
 "use strict";
 
 const gulp = require('gulp'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename'),
-  	sass = require('gulp-sass'),
-		maps = require('gulp-sourcemaps'),
-		babel = require('gulp-babel'),
-		gutil = require('gulp-util');
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
+	maps = require('gulp-sourcemaps'),
+	babel = require('gulp-babel'),
+	gutil = require('gulp-util'),
+    del = require('del');
 
 gulp.task("concatScripts", function() {
     return gulp.src([
@@ -21,27 +22,41 @@ gulp.task("concatScripts", function() {
 });   
 
 gulp.task("minifyScripts", ["concatScripts"],  function() {
-    gulp.src('js/app.js')
-    		.pipe(babel({
-			      presets: ['env']
-			    }))
+    return gulp.src('js/app.js')
+        .pipe(babel({
+                presets: ['env']
+            }))
         .pipe(uglify())
         .on('error', function (err) { 
-        		gutil.log(gutil.colors.red('[Error]'), err.toString()); 
-        	})
+                gutil.log(gutil.colors.red('[Error]'), err.toString()); 
+            })
         .pipe(rename('app.min.js'))
         .pipe(gulp.dest('js'))
 });
 
 gulp.task("compileSass", function() {
-	gulp.src('scss/application.scss')
+	return gulp.src('scss/application.scss')
 	.pipe(maps.init())
 	.pipe(sass())
 	.pipe(maps.write('./'))
 	.pipe(gulp.dest('css'));
 })
 
+gulp.task('watchSass', function() {
+  gulp.watch('scss/**/*.scss', ['compileSass']);
+})
 
-gulp.task("build", [ "minifyScripts", "compileSass"]);
+gulp.task('clean', function() {
+  del(['dist', 'css/application.css*', 'js/app*.js*']);
+})
 
-gulp.task("default", ["build"]);
+gulp.task("build", [ "minifyScripts", "compileSass"], function() {
+    // change src 'js/app.js' to **'js/app.min.js'**, when **MINIFY ISSUE** is resolved
+    return gulp.src(['css/application.css', 'js/app.js', 'index.html', 'favicon.ico', 'img/**'], {base: './'})
+                    .pipe(gulp.dest('dist'));
+});
+
+gulp.task("default", ["clean"], function() {
+  // gulp.start is removed in Gulp 4: docs https://github.com/gulpjs/gulp/blob/4.0/docs/API.md#gulpseriestasks
+  gulp.start("build");
+});
