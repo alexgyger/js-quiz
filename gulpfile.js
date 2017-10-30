@@ -57,6 +57,9 @@ gulp.task("build", [ "minifyScripts", "compileSass"], function() {
 });
 
 gulp.task("default", ["clean"], function() {
-  // gulp.start is removed in Gulp 4: docs https://github.com/gulpjs/gulp/blob/4.0/docs/API.md#gulpseriestasks
   gulp.start("build");
 });
+
+// gulp default task: possible solution in Gulp 4 with gulp.series() – (Gulp 4 not out yet: working with local version 3.9.1)
+// Source API: https://github.com/gulpjs/gulp/blob/4.0/docs/API.md#gulpseriestasks
+// gulp.task("default", gulp.series('clean', 'build'));
