@@ -1,0 +1,48 @@
+{
+  "topic": "Under Water",
+  "questions": {
+    "question1": {
+      "question": "Which fish produces light to attract it's prey?",
+      "solution": "frogfish",
+      "optionA": "salmon",
+      "optionB": "shark",
+      "optionC": "frogfish",
+      "optionD": "mermaid"
+    },
+    "question2": {
+      "question": "What does plankton eat?",
+      "solution": "algae",
+      "optionA": "fish eggs",
+      "optionB": "algae",
+      "optionC": "sea lemons",
+      "optionD": "whales"
+    },
+    "question3": {
+      "question": "How many years old did the oldest fish (a coi carp) become?" ,
+      "solution": "226",
+      "optionA": "92",
+      "optionB": "310",
+      "optionC": "159",
+      "optionD": "226"
+    },
+    "question4": {
+      "question" : "What is the largest fish in the world?",
+      "solution": "whale shark",
+      "optionA": "whale shark",
+      "optionB": "giant oarfish",
+      "optionC": "beluga",
+      "optionD": "great white shark"
+    },
+    "question5": {
+      "question": "How much in percent is the Earth's surface covered by oceans?",
+      "solution": "71",
+      "optionA": "83",
+      "optionB": "71",
+      "optionC": "56",
+      "optionD": "95"
+    }
+  }
+}
+
+
+
