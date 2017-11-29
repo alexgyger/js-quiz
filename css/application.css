@@ -647,6 +647,9 @@ button:focus {
   background: grey;
   /*color: red;*/ }
 
+button.selected {
+  background: #000; }
+
 /*button:active {
   background: grey;
   color: red;

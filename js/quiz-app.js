@@ -1,3 +1,11 @@
+// const QUIZZAPP = {
+// 	init: function() {
+// 		console.log('quiz inizialized');
+// 	};
+// 	run: function() {
+// 		console.log('quiz running');
+// 	};
+// };
 let corrAnsw = 0;
 let answSkipped = 0;
 let htmlOutput = '';
@@ -9,37 +17,67 @@ let quizList = [
 	['What does plankton eat?', 'algae'],
 	['How many years old did the oldest fish (a coi carp) become?', '226'],
 	['What is the largest fish in the world? (Two words)', 'whale shark'],
-	["How much in percent is the Earth's surface covered by oceans?", "70"]
+	["How much in percent is the Earth's surface covered by oceans?", "71"]
 ];
+const multiChoiceList = {
+  "topic": "Under Water",
+  "questions": {
+  	"1": {
+      "question": "Which fish produces light to attract it's prey?",
+      "solution": "frogfish",
+      "options": {
+        "a": "salmon",
+        "b": "shark",
+        "c": "frogfish",
+        "d": "mermaid"
+      }
+    },
+    "2": {
+      "question": "What does plankton eat?",
+      "solution": "algae",
+      "a": "fish eggs",
+      "b": "algae",
+      "c": "sea lemons",
+      "d": "whales"
+    },
+    "3": {
+      "question": "How many years old did the oldest fish (a coi carp) become?" ,
+      "solution": "226",
+      "options": {
+        "a": "92",
+        "b": "310",
+        "c": "159",
+        "d": "226"
+      }
+    },
+    "4": {
+      "question" : "What is the largest fish in the world?",
+      "solution": "whale shark",
+      "options": {
+        "a": "whale shark",
+        "b": "giant oarfish",
+        "c": "beluga",
+        "d": "great white shark"
+      }
+    },
+    "5": {
+      "question": "How much in percent is the Earth's surface covered by oceans?",
+      "solution": "71",
+      "options": {
+        "a": "83",
+        "b": "71",
+        "c": "56",
+        "d": "95"
+      }
+    }
+  }
+};
 
 function renderUI(message) {
   // DOM-Object
   let outputDiv = document.getElementById('output');
   outputDiv.innerHTML = message;
 }
-
-// function runQuiz(passArray) {
-// 	for( i = 0; i < passArray.length; i += 1) {
-// 		let currentQuestion = '';
-// 		while (currentQuestion === ''){
-// 			currentQuestion = prompt('Question ' + (i+1) + ': ' + passArray[i][0]);
-// 		}
-// 		// 4 input states: empty, cancelled(skipped), wrong, correct
-// 		if (currentQuestion != null) {
-// 			if (currentQuestion.toLowerCase() === passArray[i][1]){
-// 				corrAnsw += 1;
-// 				// console.log('corrAnsw: ' + corrAnsw);
-// 				passArray[i][2] = true;
-// 			} else {
-// 				passArray[i][2] = false;
-// 			}
-// 		} else {
-// 			passArray[i][2] = false;
-// 			answSkipped += 1;
-// 		};
-// 		// console.log('passArray[i][2]: ' + passArray[i][2]);
-// 	}
-// }
 
 function printNewQuestion(passArray, i){
 	if (i < passArray.length){
@@ -59,15 +97,21 @@ function printNewQuestion(passArray, i){
 	}
 }
 
-function runQuizViaInput(passArray) {
-	let i = 0;
-	console.log('Quiz started');
-	printNewQuestion(passArray, i);
+// runQuizViaInput
+function runQuizViaMulti(passObject) {
+	let i = 1;
+	let allQuestions = passObject.questions;
 
-	$("#inputField").show()
+	let currentQuestion = allQuestions[i];
+
+	$("#btn-opt-a").text(currentQuestion.options.a);
+	$("#btn-opt-b").text(currentQuestion.options.b);
+	$("#btn-opt-c").text(currentQuestion.options.c);
+	$("#btn-opt-d").text(currentQuestion.options.d);
+	
+	$(".multi-choice").show()
 	$("#btn-enter").show()
-	$("#btn-skip").show()
-	$("#inputField").focus();
+	// $("#btn-skip").show()
 
 	$("#btn-enter").click(function(){
 		if (i < passArray.length){
@@ -105,6 +149,53 @@ function runQuizViaInput(passArray) {
 		};
 	})
 }
+
+// function runQuizViaInput(passArray) {
+// 	let i = 0;
+// 	console.log('Quiz started');
+// 	printNewQuestion(passArray, i);
+
+// 	$("#inputField").show()
+// 	$("#btn-enter").show()
+// 	$("#btn-skip").show()
+// 	$("#inputField").focus();
+
+// 	$("#btn-enter").click(function(){
+// 		if (i < passArray.length){
+// 			if ($("#inputField").val().toLowerCase() === passArray[i][1]){
+// 				corrAnsw++;
+// 				passArray[i][2] = true;
+// 			}
+// 			i++;
+// 			console.log('i: ' + i);
+// 			printNewQuestion(passArray, i);
+// 		}
+// 	})
+  
+//   $("#inputField").keyup(function(event) {
+// 		event.preventDefault();
+// 	  if (event.keyCode == 13) {
+// 	    if (i < passArray.length){
+// 				if ($("#inputField").val().toLowerCase() === passArray[i][1]){
+// 					corrAnsw++;
+// 					passArray[i][2] = true;
+// 				}
+// 				i++;
+// 				console.log('i: ' + i);
+// 				printNewQuestion(passArray, i);
+// 			}
+// 	  }
+//   })
+
+// 	$("#btn-skip").click(function(){
+// 		if (i < passArray.length){
+// 			passArray[i][2] = false;
+// 			i++;
+// 			console.log('i: ' + i);
+// 			printNewQuestion(passArray, i);
+// 		};
+// 	})
+// }
 
 function createList(passPhrase) {
 	htmlOutput += '<h2>' + passPhrase + '</h2><ol>';
@@ -149,6 +240,15 @@ function buildUpHTML() {
 	}
 }
 
+$(".multi-choice").click(function(){
+	let $currentObj = $(this);
+	$(".multi-choice").each(function(){
+		$(".multi-choice").removeClass('selected');
+	});
+	$currentObj.addClass("selected");
+});
+	
+
 // Running the quiz, saves answers (true/false) to the "quizList"-array
 $("#btn-start-quiz").click(function(){
 	$(this).hide();
@@ -156,8 +256,10 @@ $("#btn-start-quiz").click(function(){
 	// $("#btn-show-results").show();
 	setTimeout(function(){
 		runningQuiz = true;
-		// runQuiz(quizList);
-		runQuizViaInput(quizList);
+
+		runQuizViaMulti(multiChoiceList);
+		// runQuizViaInput(quizList);
+		
 		}, 0);
 	// $("#btn-show-results").focus();
 });
@@ -205,7 +307,10 @@ $("#btn-retry-quiz").click(function(){
 
 	// Run Quiz again
 	setTimeout(function(){
-		runQuizViaInput(quizList);
+
+		runQuizViaMulti(multiChoiceList);
+		
+		// runQuizViaInput(quizList);
 	}, 250);
 
 	// $("#btn-show-results").focus();
@@ -223,3 +328,4 @@ $("#btn-show-hints").click(function(){
 $("header").hover(function(){
 	$(".infobox").hide();
 });
+

@@ -37,6 +37,10 @@ button:focus {
   /*color: red;*/
 }
 
+button.selected {
+  background: $black;
+}
+
 /*button:active {
   background: grey;
   color: red;
